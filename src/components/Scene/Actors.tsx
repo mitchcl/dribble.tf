@@ -64,7 +64,9 @@ export const PlayerModel = (props: PlayerModelProps) => {
   // The models have been hugely optimized by removing bones/animations and baking the pose,
   // so it's no longer as huge a deal. They're are also cached by the GLTF loader.
   const modelUrl = getAsset(`/models/players/${CLASS_MAP[props.classId]}_${props.team}.glb`)
-  const gltf = useGLTF(modelUrl, true, false)
+  // Local Draco decoder — drei's `true` default fetches it from www.gstatic.com,
+  // a third-party request an embedded viewer must not make (and our CSP blocks).
+  const gltf = useGLTF(modelUrl, getAsset('/draco/'), false)
 
   return (
     <group {...props} visible={props.visible} rotation={[Math.PI * 0.5, Math.PI * 0.5, 0]}>

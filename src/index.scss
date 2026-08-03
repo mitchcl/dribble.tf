@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,7 +71,10 @@ html {
   color: var(--text-primary);
   font-size: 1.5vw;
   font-size: clamp(8px, 1.5vw, 14px);
-  font-family: 'Source Sans Pro', sans-serif;
+  /* tf2esports.com fork: Inter is self-hosted by the embedding site at /fonts (same
+     origin as this build). Standalone builds simply fall through to the system stack —
+     either way nothing is requested from Google Fonts. */
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 @media screen and (min-width: 1024px) {

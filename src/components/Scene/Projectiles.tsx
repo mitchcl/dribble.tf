@@ -105,7 +105,8 @@ export const ProjectileModel = (props: ProjectileModelProps) => {
 
   const modelKey = normalizeProjectileModelKey(props.type, props.team)
   const model = getAsset(`/models/projectiles/${modelKey}.glb`)
-  const gltf = useGLTF(model, true)
+  // Local Draco decoder — see Actors.tsx.
+  const gltf = useGLTF(model, getAsset('/draco/'))
 
   if (!cachedScene) {
     const cloned = SkeletonUtils.clone(gltf.scene)
